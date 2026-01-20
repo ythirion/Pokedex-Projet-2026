@@ -1,11 +1,18 @@
 import { getListPokemons } from './service/specifyAPI'
 
-type LitePokemon = { name: string; url: string; };
+type LitePokemon = { name: string; url: string };
 
 let fullRepository: LitePokemon[] = [];
 let currentDisplayList: LitePokemon[] = [];
 
-async function affichage () {
+// Déclaration du type global pour éviter les erreurs TS
+declare global {
+    interface Window {
+        onPokemonClick?: (pokemon: LitePokemon) => void;
+    }
+}
+
+async function affichage() {
     try {
         const response = await getListPokemons();
 
