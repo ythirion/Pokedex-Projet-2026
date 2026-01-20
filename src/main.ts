@@ -25,3 +25,12 @@ async function affichage () {
 }
 
 affichage();
+
+
+function pokemon() {
+for (let pokemon of currentDisplayList) {
+        console.log(pokemon.name);
+    }
+
+}
+pokemon();
