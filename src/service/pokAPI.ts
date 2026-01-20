@@ -1,4 +1,4 @@
-import type {Pokemon} from "../type/poke-type";
+import type { Pokemon } from "../type/poke-type.ts";
 
 export async function pokeApiFetcher(identificator: string | number) : Promise<Pokemon | null> {
     try {
