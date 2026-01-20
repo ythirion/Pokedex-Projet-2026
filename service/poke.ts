@@ -1,4 +1,4 @@
-javascript import type { Pokemon } from "../type/poke-type";
+import type { Pokemon } from "../type/poke-type";
 
 export async function getListPokemons () : Promise<Pokemon | null> {
     try {
