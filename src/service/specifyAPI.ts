@@ -14,7 +14,7 @@ export async function getListPokemons () : Promise<APIListResponse | null> {
 export async function getPokemon () {
     try {
 
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10000}");
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20}");
         const data = await response.json();
         return data.results;
     } catch (error) {
