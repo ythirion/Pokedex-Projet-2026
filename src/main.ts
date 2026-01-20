@@ -19,19 +19,21 @@ async function affichage () {
                 console.log(`Le premier Pokémon est : ${currentDisplayList[0].name}`);
             }
         }
+        return currentDisplayList;
     } catch (error) {
         console.error(error);
     }
 }
 
-affichage();
+
 
 async function chargerPokedex() {
 
     const data = await getListPokemons();
     const container = document.getElementById("pokedex-container");
+
     const pokemon = affichage();
-let toutLeHTML = "";
+    let toutLeHTML = "";
 
     data.results.forEach((pokemon, index) => {
         console.log(pokemon.name);
