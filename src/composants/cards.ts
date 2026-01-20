@@ -1,0 +1,44 @@
+    class MyCard extends HTMLElement {
+	constructor() {
+		super()
+		const shadow = this.attachShadow({ mode: 'open' })
+		
+    
+    shadow.innerHTML = 
+    `<style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #pokedex-container {
+            display: flex;
+            flex-wrap: wrap;       
+            justify-content: center;
+            gap: 20px;            
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .carte {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            text-transform: capitalize; 
+        }
+        .carte:hover {
+            transform: translateY(-5px); 
+        }
+        .carte img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>`
+    }
+}
