@@ -50,7 +50,7 @@ async function chargerDetails() {
         const boutonCri = document.getElementById("play-cri");
         const cries = pokemon.cries.latest;
 
-        if (boutonCri && cries) {
+        if (cries) {
             boutonCri.addEventListener("click", () => {
                 const audio = new Audio(cries);
                 audio.play();

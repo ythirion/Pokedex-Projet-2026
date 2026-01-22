@@ -1,4 +1,4 @@
-import { chargerPokedex } from './display.ts';
+import { chargerPokedex } from './pokedex.ts';
 
 
 chargerPokedex();

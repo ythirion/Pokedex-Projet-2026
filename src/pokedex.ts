@@ -42,7 +42,7 @@ export async function chargerPokedex() {
         const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/${id}.png`;
 
         displayHTML += `
-            <a href="../html/card.html?id=${id}"><div class="carte">
+            <a href="../html/detail.html?id=${id}"><div class="carte">
                 <img src="${image}" alt="${pokemon.name}">
                 <h3>${pokemon.name}</h3>
             </div></a>
