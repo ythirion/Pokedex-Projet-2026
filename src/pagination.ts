@@ -1,4 +1,4 @@
-export const POKEMONS_PAR_PAGE = 10;
+export const POKEMONS_PAR_PAGE = 20;
 let pageActuelle = 0;
 
 export function initialiserPagination(auChangementDePage: (nouvellePage: number) => void) {

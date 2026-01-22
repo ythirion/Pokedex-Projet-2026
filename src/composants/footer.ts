@@ -1,3 +1,5 @@
+import {chargerPokedex} from '../pokedex.ts';
+
 class pokeFooter extends HTMLElement {
     constructor() {
         super()
@@ -9,16 +11,18 @@ class pokeFooter extends HTMLElement {
   
   <div class="footer-left">
     <button class="ds-button">
-      <span class="icon">🔍</span>
+    🔍
+      <input type="text" id="search-input" placeholder="Rechercher un Pokémon..." style="padding: 8px; width: 300px;">
     </button>
     <button class="ds-button">
-      <span class="icon">📄</span> SELECT
+      <span class="icon">📄</span> TEAM BUILDER
     </button>
   </div>
 
   <div class="footer-right">
-    <span class="nav-arrow">«</span>
-    <span class="nav-arrow">»</span>
+    <button id="btn-precedent" class="nav-arrow">«</button>
+    <select id="page-select" class="page-select"></select>
+    <button id="btn-suivant" class="nav-arrow">»</button>
     <a href="../index.html"><span class="nav-cross">✖</span></a>
     <a href="#" onclick="history.back(); return false;"><span class="nav-return">U</span></a>
   </div>
@@ -74,14 +78,28 @@ class pokeFooter extends HTMLElement {
 .footer-right {
   display: flex;
   align-items: center;
-  gap: 15px; /* Espace entre les icônes */
+  gap: 15px; 
   font-size: 20px;
   font-weight: bold;
 }
 
-.nav-arrow {
-  color: #aaa; /* Gris clair pour les flèches */
+.page-select {
+  background-color: black;
+  color: white;
+  border: 2px solid #888;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  text-transform: uppercase;
+}
+
+.nav-arrow {
+  color: #aaa; 
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
 }
 
 .nav-square {
@@ -107,6 +125,8 @@ class pokeFooter extends HTMLElement {
   font-family: sans-serif; 
 }
   </style>
+
+  <script src="../pokedex.ts"></script>
 
 </footer>
 `

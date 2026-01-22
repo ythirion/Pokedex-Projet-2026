@@ -21,12 +21,15 @@ async function chargerDetails() {
         const bio = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
         const bioData = await bio.json();
 
+        const spriteNormal = pokemon.sprites.front_default; 
+        const spriteShiny = pokemon.sprites.front_shiny;
+
         container.innerHTML = `
                 <div class="details-container">
                     <div class="pokemon-imgStats">
                         <article class="pokemon-image">
                             <button id="play-cri" class="btn-cri">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokemon.name}">
+                                <img id="img-pokemon" src="${spriteNormal}" alt="${pokemon.name}">
                             </button>
                         </article>
 
@@ -36,6 +39,7 @@ async function chargerDetails() {
                             <p><strong>Types :</strong> ${types}</p>
                             <p><strong>Poids :</strong> ${pokemon.weight / 10} kg</p>
                             <p><strong>Taille :</strong> ${pokemon.height / 10} m</p>
+                            <button id="btn-shiny" class="btn-shiny">Shiny</button>
                         </aside>
                     </div>
                 
@@ -46,6 +50,24 @@ async function chargerDetails() {
                     </article>
                 </div>
                 `;
+
+        const btnShiny = document.getElementById("btn-shiny");
+        const imgPokemon = document.getElementById("img-pokemon") as HTMLImageElement;
+
+        let isShiny = false;
+
+        if (btnShiny && imgPokemon) {
+            btnShiny.addEventListener("click", () => {
+                isShiny = !isShiny;
+
+                if (isShiny) {
+                    imgPokemon.src = spriteShiny;
+                } else {
+                    imgPokemon.src = spriteNormal;
+                }
+
+            });
+        }
 
         const boutonCri = document.getElementById("play-cri");
         const cries = pokemon.cries.latest;
