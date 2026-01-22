@@ -1,8 +1,8 @@
 import type {APIListResponse} from "../type/poke-type.ts";
 
-export async function getListPokemons () : Promise<APIListResponse | null> {
+export async function getListPokemons (limit : number, offset : number) : Promise<APIListResponse | null> {
     try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=40&offset=0");
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
         return await response.json() as APIListResponse;
     } catch (error) {
         console.error(error);
