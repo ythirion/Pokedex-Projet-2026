@@ -31,27 +31,20 @@ async function affichage () {
     }
 }
 
-async function previous() {
-    pageNumber = pageNumber - 1;
-    await affichage ();
-}
-
-async function next() {
-    const pagenext = pageNumber + 1;
-    await affichage ();
-}
-
 export async function chargerPokedex() {
 
-    const data = await getListPokemons();
+    const offset = (pageNumber - 1)*pkmPerPage
+    const data = await getListPokemons(pkmPerPage, offset);
     const container = document.getElementById("pokedex-container");
 
-    const pokemon = affichage();
-    let displayHTML = "";
+    let displayHTML = `
+            <button id="btn-prev" class="nav-arrow">« Précédent</button>
+            <span id="page-display"> Page 1 </span>
+            <button id="btn-next" class="nav-arrow">Suivant »</button>";`
 
-    data.results.forEach((pokemon, index) => {
+    data?.results.forEach((pokemon, index) => {
         console.log(pokemon.name);
-        const id = index + 1;
+        const id = offset + index + 1;
         const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/${id}.png`;
 
         displayHTML += `
@@ -63,4 +56,19 @@ export async function chargerPokedex() {
     });
 
     container.innerHTML = displayHTML;
+
+    document.getElementById("btn-prev")?.addEventListener("click", () => {previousPage()})
+    document.getElementById("btn-next")?.addEventListener("click", () => {nextPage()})
+}
+
+async function previousPage() {
+    if (pageNumber>1){
+    pageNumber = pageNumber - 1;
+    await chargerPokedex ();
+    }
+}
+
+async function nextPage() {
+    pageNumber = pageNumber + 1;
+    await chargerPokedex ();
 }
