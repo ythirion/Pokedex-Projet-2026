@@ -1,9 +1,7 @@
-
 class pokeFooter extends HTMLElement {
     constructor() {
         super()
         const shadow = this.attachShadow({ mode: 'open' })
-
 
         shadow.innerHTML = `
 <footer class="detail-footer">
@@ -15,19 +13,15 @@ class pokeFooter extends HTMLElement {
     </div>
 
     <div class="tabs-group">
-        
         <button class="tech-tab active">
             <span class="tab-text">INFO</span>
         </button>
-        
         <button class="tech-tab">
             <span class="tab-text">EVOLUTIONS</span>
         </button>
-        
         <button class="tech-tab">
             <span class="tab-text">FORMES</span>
         </button>
-
     </div>
 
     <div class="right-controls">
@@ -42,8 +36,6 @@ class pokeFooter extends HTMLElement {
     </div>
 
     <style>
-    
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap');
 
 .detail-footer {
     background: linear-gradient(to bottom, #2a2a2a 0%, #111 20%, #000 100%);
@@ -128,8 +120,8 @@ class pokeFooter extends HTMLElement {
 }
 
 .tech-tab.active {
-    background: #e0e0e0; /* Blanc/Gris clair */
-    color: #111; /* Texte noir */
+    background: #e0e0e0;
+    color: #111;
     border-color: #fff;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     z-index: 10;
@@ -159,7 +151,6 @@ class pokeFooter extends HTMLElement {
     font-size: 14px;
     letter-spacing: 1px;
 }
-
 
 .u-icon {
     color: #3399ff; 
@@ -194,9 +185,23 @@ class pokeFooter extends HTMLElement {
     top: 0px;
     right: -1px;
 }
-
+    </style>
 </footer>
         `
+
+        const url = new URL(window.location.href)
+        const idParam = url.searchParams.get('id')
+        const currentId = idParam ? parseInt(idParam, 10) : 1
+
+        shadow.getElementById("btn-prev")?.addEventListener("click", () => {
+            if (currentId > 1) {
+                window.location.href = `?id=${currentId - 1}`
+            }
+        })
+
+        shadow.getElementById("btn-next")?.addEventListener("click", () => {
+            window.location.href = `?id=${currentId + 1}`
+        })
     }
 }
 
