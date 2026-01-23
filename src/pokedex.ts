@@ -1,9 +1,8 @@
 
 import { getListPokemons } from './service/specifyAPI'
-import { initialiserPagination, genererSelectPages, POKEMONS_PAR_PAGE, resetPage } from './pagination';
+import { initialiserPagination, genererSelectPages, resetPage } from './pagination';
 
 type LitePokemon = { name: string; url: string; };
-
 
 
 let fullRepository: LitePokemon[] = [];
