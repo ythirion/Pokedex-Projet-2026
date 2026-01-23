@@ -38,7 +38,7 @@ export default async function chargerPokedex(pageNumber: number = 1) {
             <div class="footer-left">
                 <button class="ds-button">
                     <span class="icon">🔍</span>
-                    <input type="text" id="search-input" placeholder="SEARCH" style="padding: 0; width: 150px; background:transparent; border:none; color:white; font-family:inherit; font-weight:bold; outline:none; text-transform: uppercase;">
+                    <input type="text" id="search-input" placeholder="SEARCH"">
                 </button>
                 <button class="ds-button">
                     <span class="icon">📄</span> TEAM
