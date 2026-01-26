@@ -108,4 +108,5 @@ async function chargerDetails() {
         console.error(error);
     }
 }
+
 chargerDetails(); 
