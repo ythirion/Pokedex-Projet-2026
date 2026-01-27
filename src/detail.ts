@@ -1,4 +1,5 @@
 import { changerScene } from './router.ts';
+import './composants/footer-detail.ts';
 
 function chargerEquipe(nom: string): number[] {
     const data = localStorage.getItem(nom);
@@ -39,7 +40,7 @@ export async function chargerDetails(id: number) {
                         </button>
                     </article>
                     
-                    <div class="scene.active">
+                    <div id="info" class="scene.active">
                         <aside class="pokemon-info">
                             <h1 class="info-title">${pokemon.name.toUpperCase()}</h1>
                             <p><strong>N° :</strong> ${pokemon.id}</p>
@@ -61,14 +62,12 @@ export async function chargerDetails(id: number) {
                             
                         </div>
                     </div>
-                    <div class="scene">
+                    <div id="stats" class="scene">
                     <aside class="pokemon-info">
                         <h2 class="stats-title">Statistiques</h2>
-                        <ul class="stats-list">
-                            ${pokemon.stats.map((stat: { stat: { name: string; }; base_stat: number; }) => `
-                                <li><strong>${stat.stat.name.toUpperCase()}:</strong> ${stat.base_stat}</li>
-                            `).join('')}
-                        </ul>
+                        <ol class="stats-list">
+                            <li>bonjour</li>
+                        </ol>
                         </aside>
                     </div>
                 </div>
@@ -77,7 +76,11 @@ export async function chargerDetails(id: number) {
                 <p>${bioData.flavor_text_entries.find((entry: { language: { name: string; }; }) => entry.language.name === "fr").flavor_text.replace(/\n|\f/g, ' ')}</p>
                 </article>
             </div>
+
+            <footer-detail></footer-detail>
             `;
+    
+
         const btnShiny = document.getElementById("btn-shiny");
         const imgPokemon = document.getElementById("img-pokemon") as HTMLImageElement;
         let isShiny = false;
@@ -124,6 +127,9 @@ export async function chargerDetails(id: number) {
 
             localStorage.setItem('team3', JSON.stringify(tableauEquipe3));
             console.log(tableauEquipe3);
+
+
+
         });
         afficherPagination(id)
     } catch (error) {

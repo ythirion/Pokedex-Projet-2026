@@ -1,11 +1,10 @@
-class pokeFooter extends HTMLElement {
+export class pokeFooter extends HTMLElement {
     constructor() {
         super()
         const shadow = this.attachShadow({ mode: 'open' })
 
         shadow.innerHTML = `
-<link rel="stylesheet" href="style/card-style.css">
-
+        <link rel="stylesheet" href="../../style/card-style.css">
 <footer class="detail-footer">
     
     <div class="nav-arrows">
@@ -15,13 +14,13 @@ class pokeFooter extends HTMLElement {
     </div>
 
     <div class="tabs-group">
-        <button class="tech-tab">
+        <button class="tech-tab active">
             <span class="tab-text">INFO</span>
         </button>
         <button class="tech-tab">
             <span class="tab-text">EVOLUTIONS</span>
         </button>
-        <button id="tab-stats" class="tech-tab">
+        <button class="tech-tab">
             <span class="tab-text">STATS</span>
         </button>
         <button class="tech-tab">
@@ -39,31 +38,8 @@ class pokeFooter extends HTMLElement {
             <span class="esc-text">ESC</span>
         </a>
     </div>
-
-    <style>
 </footer>
         `
-        const tabInfo = shadow.getElementById('tab-info');
-        const tabStats = shadow.getElementById('tab-stats');
-
-        const handleTabClick = (tabName: string) => {
-    
-    if (tabName === 'info') {
-        tabInfo?.classList.add('active');
-        tabStats?.classList.remove('active');
-    } else {
-        tabStats?.classList.add('active');
-        tabInfo?.classList.remove('active');
-    }
-
-    this.dispatchEvent(new CustomEvent('tab-change', { 
-        detail: tabName,
-        bubbles: true, 
-        composed: true 
-    }));
-};
-    
-        tabStats?.addEventListener('click', () => handleTabClick('stats'));
 
         const url = new URL(window.location.href)
         const idParam = url.searchParams.get('id')
