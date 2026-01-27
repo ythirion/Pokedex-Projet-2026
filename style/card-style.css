@@ -1,11 +1,17 @@
-body {
+a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.scene-detail {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
     background-color: #101820;
     background-image:
         radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.3) 2px, transparent 2.5px),
@@ -15,12 +21,6 @@ body {
     background-size: 100px 100px, 100px 100px, 100px 100px, cover;
     background-attachment: fixed;
     image-rendering: pixelated;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    display: block;
 }
 
 .btn-cri {

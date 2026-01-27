@@ -1,3 +1,5 @@
+import { chargerDetails } from "../detail";
+
 class pokeFooter extends HTMLElement {
     constructor() {
         super()
@@ -15,13 +17,13 @@ class pokeFooter extends HTMLElement {
     </div>
 
     <div class="tabs-group">
-        <button class="tech-tab active">
+        <button class="tech-tab">
             <span class="tab-text">INFO</span>
         </button>
         <button class="tech-tab">
             <span class="tab-text">EVOLUTIONS</span>
         </button>
-        <button class="tech-tab">
+        <button id="tab-stats" class="tech-tab">
             <span class="tab-text">STATS</span>
         </button>
     </div>
@@ -46,6 +48,27 @@ class pokeFooter extends HTMLElement {
     <style>
 </footer>
         `
+        const tabInfo = shadow.getElementById('tab-info');
+        const tabStats = shadow.getElementById('tab-stats');
+
+        const handleTabClick = (tabName: string) => {
+    
+    if (tabName === 'info') {
+        tabInfo?.classList.add('active');
+        tabStats?.classList.remove('active');
+    } else {
+        tabStats?.classList.add('active');
+        tabInfo?.classList.remove('active');
+    }
+
+    this.dispatchEvent(new CustomEvent('tab-change', { 
+        detail: tabName,
+        bubbles: true, 
+        composed: true 
+    }));
+};
+    
+        tabStats?.addEventListener('click', () => handleTabClick('stats'));
 
         const url = new URL(window.location.href)
         const idParam = url.searchParams.get('id')
@@ -53,12 +76,15 @@ class pokeFooter extends HTMLElement {
 
         shadow.getElementById("btn-prev")?.addEventListener("click", () => {
             if (currentId > 1) {
-                window.location.href = `?id=${currentId - 1}`
+                history.pushState({id: currentId-1}, '', `${window.location.origin}?id=${currentId - 1}`)
+            chargerDetails(currentId - 1)
             }
         })
 
         shadow.getElementById("btn-next")?.addEventListener("click", () => {
-            window.location.href = `?id=${currentId + 1}`
+        //    window.location.href = `?id=${currentId + 1}`
+           history.pushState({id: currentId+1}, '', `${window.location.origin}?id=${currentId + 1}`)
+            chargerDetails(currentId + 1)
         })
 
         shadow.getElementById("btn-team")?.addEventListener("click", ()=> {

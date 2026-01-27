@@ -28,6 +28,7 @@ export async function chargerDetails(id: number) {
         const bioData = await bio.json();
         const spriteNormal = pokemon.sprites.front_default;
         const spriteShiny = pokemon.sprites.front_shiny;
+        
 
         container.innerHTML = `
             <div class="details-container">
@@ -38,26 +39,45 @@ export async function chargerDetails(id: number) {
                         </button>
                     </article>
                     
+                    <div class="scene.active">
+                        <aside class="pokemon-info">
+                            <h1 class="info-title">${pokemon.name.toUpperCase()}</h1>
+                            <p><strong>N° :</strong> ${pokemon.id}</p>
+                            <p><strong>Types :</strong> ${types}</p>
+                            <p><strong>Poids :</strong> ${pokemon.weight / 10} kg</p>
+                            <p><strong>Taille :</strong> ${pokemon.height / 10} m</p>
+                            <button id="btn-shiny" class="btn-shiny">Shiny</button>
+                            <select id="select-equipe" class="btn-shiny">
+                                <option value="1">Equipe 1</option>
+                                <option value="2">Equipe 2</option>
+                                <option value="3">Equipe 3</option>
+                            </select>
+                            <button id="btn-equipe" class="btn-shiny">Ajouter à l'équipe</button>
+                        </aside>
+                    </div>
+                    <div class="scene">
+                        <h2 class="evolution-title">Évolutions</h2>
+                        <div class="evolution-chain">
+                            
+                        </div>
+                    </div>
+                    <div class="scene">
                     <aside class="pokemon-info">
-                        <h1 class="info-title">${pokemon.name.toUpperCase()}</h1>
-                        <p><strong>N° :</strong> ${pokemon.id}</p>
-                        <p><strong>Types :</strong> ${types}</p>
-                        <p><strong>Poids :</strong> ${pokemon.weight / 10} kg</p>
-                        <p><strong>Taille :</strong> ${pokemon.height / 10} m</p>
-                        <button id="btn-shiny" class="btn-shiny">Shiny</button>
-                        <select id="select-equipe" class="btn-shiny">
-                            <option value="1">Equipe 1</option>
-                            <option value="2">Equipe 2</option>
-                            <option value="3">Equipe 3</option>
-                        </select>
-                        <button id="btn-equipe" class="btn-shiny">Ajouter à l'équipe</button>
-                    </aside>
+                        <h2 class="stats-title">Statistiques</h2>
+                        <ul class="stats-list">
+                            ${pokemon.stats.map((stat: { stat: { name: string; }; base_stat: number; }) => `
+                                <li><strong>${stat.stat.name.toUpperCase()}:</strong> ${stat.base_stat}</li>
+                            `).join('')}
+                        </ul>
+                        </aside>
+                    </div>
                 </div>
                 <article class="pokemon-bio">
                 <h2 class="bio-title">Biographie</h2>
                 <p>${bioData.flavor_text_entries.find((entry: { language: { name: string; }; }) => entry.language.name === "fr").flavor_text.replace(/\n|\f/g, ' ')}</p>
                 </article>
             </div>
+            <footer-detail></footer-detail>
             `;
         const btnShiny = document.getElementById("btn-shiny");
         const imgPokemon = document.getElementById("img-pokemon") as HTMLImageElement;
