@@ -124,15 +124,6 @@ function afficherPagination(currentId: number) {
                 <button id="btn-detail-prev" style="background:none; border:none; color:#666; font-size:28px; font-weight:900; cursor:pointer; ${currentId <= 1 ? 'opacity:0.3; cursor:default;' : ''}">«</button>
             </div>
 
-            <div style="display: flex; gap: 2px;">
-                <button style="background:#e0e0e0; color:#111; border:none; padding:5px 15px; font-weight:bold; transform:skewX(-20deg);">
-                    <span style="display:inline-block; transform:skewX(20deg);">INFO</span>
-                </button>
-                <button style="background:#222; color:#888; border:1px solid #444; padding:5px 15px; font-weight:bold; transform:skewX(-20deg);">
-                    <span style="display:inline-block; transform:skewX(20deg);">STATS</span>
-                </button>
-            </div>
-
             <div style="display: flex; gap: 10px; align-items:center;">
                 <button id="btn-detail-next" style="background:none; border:none; color:#666; font-size:28px; font-weight:900; cursor:pointer;">»</button>
                 
