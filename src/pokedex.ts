@@ -1,44 +1,11 @@
-import { getListPokemons, getPokemon } from './service/specifyAPI.ts'; // Vérifie le chemin
+import { getListPokemons, getAllPokemon } from './service/specifyAPI.ts'; // Vérifie le chemin
 import { changerScene } from './router.ts';
 import { chargerDetails } from './detail.ts';
 
 type LitePokemon = { name: string; url: string; };
 
-let pkmPerPage = 20;
+const pkmPerPage = 20;
 let globalList: LitePokemon[] = [];
-
-
-function renderList(list: LitePokemon[]) {
-    const listContainer = document.getElementById("list-cards");
-    if (!listContainer) return;
-
-    listContainer.innerHTML = ""; 
-
-    
-    list.slice(0, pkmPerPage).forEach((pokemon) => {
-        const id = pokemon.url.split('/').filter(Boolean).pop(); 
-        const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
-        
-        const card = document.createElement('div');
-        card.className = 'carte';
-        card.style.cursor = 'pointer'; 
-        card.innerHTML = `
-            <img src="${image}" alt="${pokemon.name}">
-            <h3>${pokemon.name}</h3>
-        `;
-
-        
-        card.addEventListener('click', () => {
-            if (id) {
-                changerScene("scene-detail");
-                chargerDetails(parseInt(id)); 
-            }
-        });
-
-        listContainer.appendChild(card);
-    });
-}
 
 export async function chargerPokedex(pageNumber: number = 1) {
     const offset = (pageNumber - 1) * pkmPerPage;
@@ -68,10 +35,10 @@ export async function chargerPokedex(pageNumber: number = 1) {
         </footer>
         `;
 
-        
-        document.getElementById('search-input')?.addEventListener('input', async (e) => {
+
+        document.getElementById('search-input')?.addEventListener('input', async (e) => { // Actualise la recherche à chaque caractère tapé (input)
             const term = (e.target as HTMLInputElement).value;
-            if(!globalList.length) globalList = await getPokemon(); // Charge tout si pas fait
+            if(!globalList.length) globalList = await getAllPokemon(); // Charge tout si pas fait
             const results = globalList.filter(p => p.name.includes(term));
             renderList(results);
         });
@@ -107,17 +74,34 @@ export async function chargerPokedex(pageNumber: number = 1) {
     }
 }
 
-async function previousPage(pageNumber: number) {
-    if (pageNumber > 1) {
-        await chargerPokedex(pageNumber - 1);
-    }
+function renderList(list: LitePokemon[]) {
+    const listContainer = document.getElementById("list-cards");
+    if (!listContainer) return;
+
+    listContainer.innerHTML = "";
+
+
+    list.slice(0, pkmPerPage).forEach((pokemon) => {
+        const id = pokemon.url.split('/').filter(Boolean).pop();
+        const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+
+        const card = document.createElement('div');
+        card.className = 'carte';
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+            <img src="${image}" alt="${pokemon.name}">
+            <h3>${pokemon.name}</h3>
+        `;
+
+
+        card.addEventListener('click', () => {
+            if (id) {
+                changerScene("scene-detail");
+                chargerDetails(parseInt(id));
+            }
+        });
+
+        listContainer.appendChild(card);
+    });
 }
-
-async function nextPage(pageNumber: number) {
-    await chargerPokedex(pageNumber + 1);
-}
-
-//async function teamPokedex(){
-  //  await chargerDetails;
-//}
-

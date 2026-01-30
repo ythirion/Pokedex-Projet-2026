@@ -11,7 +11,7 @@ export async function getListPokemons (limit : number, offset : number) : Promis
 }
 
 
-export async function getPokemon () {
+export async function getAllPokemon () {
     try {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10000");
         const data = await response.json();
