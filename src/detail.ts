@@ -1,7 +1,7 @@
 import { changerScene } from './router.ts';
 import './composants/footer-detail.ts';
 
-function chargerEquipe(nom: string): number[] { // initialisation des équipes, [] si vide, ou alors avec les éléments.
+export function chargerEquipe(nom: string): number[] { // initialisation des équipes, [] si vide, ou alors avec les éléments.
     const data = localStorage.getItem(nom);
     return data ? JSON.parse(data) : [];
 }
