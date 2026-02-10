@@ -64,13 +64,3 @@ export interface Pokemon {
     moves: PokemonMove[];
     cries: PokemonCries;
 }
-
-export interface ITaskPokemonResult{
-    tasks: ITask[];
-    totalCount: number;
-}
-
-export interface IProjectPokemonResult{
-    projects: IProject[];
-    totalCount: number;
-}
